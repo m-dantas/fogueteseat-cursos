@@ -1,4 +1,6 @@
 import http from 'node:http';
+import { json } from './middlewares/json.js';
+import { Database } from './database.js';
 
 // GET => Buscar um recurso do back-end
 // POST => Criar um recurso no back-end
@@ -9,23 +11,27 @@ import http from 'node:http';
 // Stateful => Sempre tem algum tipo de informação sendo salva em memory
 // Stateless => Nunca salva em memory, talvez solve em arquivos ou banco de dados
 
-const users = [];
+const database = new Database();
 
-const server = http.createServer((req, res) => {
+const server = http.createServer(async (req, res) => {
   const { method, url } = req;
 
+  await json(req, res)
+
   if(method === 'GET' && url === '/users') {
-    return res
-      .writeHead(200, { 'Content-Type': 'application/json' })
-      .end(JSON.stringify(users));
+    const users = await database.select('users');
+    return res.end(JSON.stringify(users));
   }
 
   if (method === 'POST' && url === '/users') {
-    users.push({
+    const { name, email } = req.body
+    const user = {
       id: 1,
-      name: 'John Doe',
-      email: 'johndoe@example.com',
-    });
+      name,
+      email
+    }
+
+    database.insert('users', user)
 
     return res.writeHead(201).end();
   }
