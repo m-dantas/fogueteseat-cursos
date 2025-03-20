@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "node --watch ./server.js",
+    "dev": "node --watch ./src/server.js",
+    "fun": "node --watch ./streams/stream-http-server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
