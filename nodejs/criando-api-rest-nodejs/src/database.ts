@@ -1,18 +1,17 @@
+import { env } from './env'
 import setupKnex from 'knex'
+import type { Knex } from 'knex'
 
-// export const knex = setupKnex({
-//   client: 'better-sqlite3',
-//   connection: {
-//     filename: ':memory:',
-//     options: {
-//       nativeBinding: './node_modules/better-sqlite3/build/Release/better_sqlite3.node'
-//     }
-//   },
-// })
-
-export const knex = setupKnex({
+export const config: Knex.Config = {
   client: 'sqlite',
   connection: {
-    filename: ':memory:',
+    filename: env.DATABASE_URL,
   },
-})
+  useNullAsDefault: true,
+  migrations: {
+    extension: 'ts',
+    directory: './db/migrations',
+  },
+}
+
+export const knex = setupKnex(config)
