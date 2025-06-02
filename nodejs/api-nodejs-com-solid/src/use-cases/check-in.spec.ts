@@ -3,6 +3,8 @@ import { InMemoryCheckInsRepository } from '@/repositories/in-memory/in-memory-c
 import { CheckInUseCase } from './check-in-case'
 import { InMemoryGymsRepository } from '@/repositories/in-memory/in-memory-gyms-repository'
 import { Decimal } from 'generated/prisma/runtime/library.js'
+import { MaxDistanceError } from './errors/max-distance-error'
+import { MaxNumberOfCheckInsError } from './errors/max-number-of-checkins-error'
 
 let checkInsRepository: InMemoryCheckInsRepository
 let gymsRepository: InMemoryGymsRepository
@@ -11,18 +13,18 @@ let sut: CheckInUseCase
 // -23.536287, -46.398196 -> gringos
 
 describe('CheckIn Use Case', () => {
-  beforeEach(() => {
+  beforeEach(async () => {
     checkInsRepository = new InMemoryCheckInsRepository()
     gymsRepository = new InMemoryGymsRepository()
     sut = new CheckInUseCase(gymsRepository, checkInsRepository) // System Under Test
 
-    gymsRepository.items.push({
-      title: 'JavaScript Gym',
-      description: '',
+    await gymsRepository.create({
+      id: 'gym-01',
+      title: 'JavaScript Gym Test',
+      description: null,
       latitude: new Decimal(-23.5388581),
       longitude: new Decimal(-46.3999689),
-      phone: '',
-      id: 'gym-01',
+      phone: null,
     })
 
     vi.useFakeTimers()
@@ -65,7 +67,7 @@ describe('CheckIn Use Case', () => {
         userLatitude: -23.5388581,
         userLogintude: -46.3999689,
       }),
-    ).rejects.toBeInstanceOf(Error)
+    ).rejects.toBeInstanceOf(MaxNumberOfCheckInsError)
   })
 
   it('should be able to check in twice but in different days', async () => {
@@ -93,7 +95,7 @@ describe('CheckIn Use Case', () => {
   it('should not be able to check in on distant gym', async () => {
     vi.setSystemTime(new Date(2022, 0, 20, 8, 0, 0))
 
-    gymsRepository.items.push({
+    gymsRepository.create({
       title: 'JavaScript Gym',
       description: '',
       latitude: new Decimal(-23.536287),
@@ -109,6 +111,6 @@ describe('CheckIn Use Case', () => {
         userLatitude: -23.5388581,
         userLogintude: -46.3999689,
       }),
-    ).rejects.toBeInstanceOf(Error)
+    ).rejects.toBeInstanceOf(MaxDistanceError)
   })
 })
