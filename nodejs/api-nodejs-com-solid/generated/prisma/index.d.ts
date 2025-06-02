@@ -3426,8 +3426,8 @@ export namespace Prisma {
   export type GymGroupByOutputType = {
     id: string
     title: string
-    description: string
-    phone: string
+    description: string | null
+    phone: string | null
     latitude: Decimal
     longitude: Decimal
     _count: GymCountAggregateOutputType | null
@@ -3505,8 +3505,8 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       title: string
-      description: string
-      phone: string
+      description: string | null
+      phone: string | null
       latitude: Prisma.Decimal
       longitude: Prisma.Decimal
     }, ExtArgs["result"]["gym"]>
@@ -4624,8 +4624,8 @@ export namespace Prisma {
     NOT?: GymWhereInput | GymWhereInput[]
     id?: StringFilter<"Gym"> | string
     title?: StringFilter<"Gym"> | string
-    description?: StringFilter<"Gym"> | string
-    phone?: StringFilter<"Gym"> | string
+    description?: StringNullableFilter<"Gym"> | string | null
+    phone?: StringNullableFilter<"Gym"> | string | null
     latitude?: DecimalFilter<"Gym"> | Decimal | DecimalJsLike | number | string
     longitude?: DecimalFilter<"Gym"> | Decimal | DecimalJsLike | number | string
     checkIns?: CheckInListRelationFilter
@@ -4634,8 +4634,8 @@ export namespace Prisma {
   export type GymOrderByWithRelationInput = {
     id?: SortOrder
     title?: SortOrder
-    description?: SortOrder
-    phone?: SortOrder
+    description?: SortOrderInput | SortOrder
+    phone?: SortOrderInput | SortOrder
     latitude?: SortOrder
     longitude?: SortOrder
     checkIns?: CheckInOrderByRelationAggregateInput
@@ -4647,8 +4647,8 @@ export namespace Prisma {
     OR?: GymWhereInput[]
     NOT?: GymWhereInput | GymWhereInput[]
     title?: StringFilter<"Gym"> | string
-    description?: StringFilter<"Gym"> | string
-    phone?: StringFilter<"Gym"> | string
+    description?: StringNullableFilter<"Gym"> | string | null
+    phone?: StringNullableFilter<"Gym"> | string | null
     latitude?: DecimalFilter<"Gym"> | Decimal | DecimalJsLike | number | string
     longitude?: DecimalFilter<"Gym"> | Decimal | DecimalJsLike | number | string
     checkIns?: CheckInListRelationFilter
@@ -4657,8 +4657,8 @@ export namespace Prisma {
   export type GymOrderByWithAggregationInput = {
     id?: SortOrder
     title?: SortOrder
-    description?: SortOrder
-    phone?: SortOrder
+    description?: SortOrderInput | SortOrder
+    phone?: SortOrderInput | SortOrder
     latitude?: SortOrder
     longitude?: SortOrder
     _count?: GymCountOrderByAggregateInput
@@ -4674,8 +4674,8 @@ export namespace Prisma {
     NOT?: GymScalarWhereWithAggregatesInput | GymScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Gym"> | string
     title?: StringWithAggregatesFilter<"Gym"> | string
-    description?: StringWithAggregatesFilter<"Gym"> | string
-    phone?: StringWithAggregatesFilter<"Gym"> | string
+    description?: StringNullableWithAggregatesFilter<"Gym"> | string | null
+    phone?: StringNullableWithAggregatesFilter<"Gym"> | string | null
     latitude?: DecimalWithAggregatesFilter<"Gym"> | Decimal | DecimalJsLike | number | string
     longitude?: DecimalWithAggregatesFilter<"Gym"> | Decimal | DecimalJsLike | number | string
   }
@@ -4797,8 +4797,8 @@ export namespace Prisma {
   export type GymCreateInput = {
     id?: string
     title: string
-    description: string
-    phone: string
+    description?: string | null
+    phone?: string | null
     latitude: Decimal | DecimalJsLike | number | string
     longitude: Decimal | DecimalJsLike | number | string
     checkIns?: CheckInCreateNestedManyWithoutGymInput
@@ -4807,8 +4807,8 @@ export namespace Prisma {
   export type GymUncheckedCreateInput = {
     id?: string
     title: string
-    description: string
-    phone: string
+    description?: string | null
+    phone?: string | null
     latitude: Decimal | DecimalJsLike | number | string
     longitude: Decimal | DecimalJsLike | number | string
     checkIns?: CheckInUncheckedCreateNestedManyWithoutGymInput
@@ -4817,8 +4817,8 @@ export namespace Prisma {
   export type GymUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    phone?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
     latitude?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     longitude?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     checkIns?: CheckInUpdateManyWithoutGymNestedInput
@@ -4827,8 +4827,8 @@ export namespace Prisma {
   export type GymUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    phone?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
     latitude?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     longitude?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     checkIns?: CheckInUncheckedUpdateManyWithoutGymNestedInput
@@ -4837,8 +4837,8 @@ export namespace Prisma {
   export type GymCreateManyInput = {
     id?: string
     title: string
-    description: string
-    phone: string
+    description?: string | null
+    phone?: string | null
     latitude: Decimal | DecimalJsLike | number | string
     longitude: Decimal | DecimalJsLike | number | string
   }
@@ -4846,8 +4846,8 @@ export namespace Prisma {
   export type GymUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    phone?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
     latitude?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     longitude?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
   }
@@ -4855,8 +4855,8 @@ export namespace Prisma {
   export type GymUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    phone?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
     latitude?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     longitude?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
   }
@@ -5017,6 +5017,21 @@ export namespace Prisma {
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
   export type DecimalFilter<$PrismaModel = never> = {
     equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
     in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
@@ -5063,6 +5078,24 @@ export namespace Prisma {
   export type GymSumOrderByAggregateInput = {
     latitude?: SortOrder
     longitude?: SortOrder
+  }
+
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type DecimalWithAggregatesFilter<$PrismaModel = never> = {
@@ -5175,6 +5208,10 @@ export namespace Prisma {
     connectOrCreate?: CheckInCreateOrConnectWithoutGymInput | CheckInCreateOrConnectWithoutGymInput[]
     createMany?: CheckInCreateManyGymInputEnvelope
     connect?: CheckInWhereUniqueInput | CheckInWhereUniqueInput[]
+  }
+
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
   }
 
   export type DecimalFieldUpdateOperationsInput = {
@@ -5316,6 +5353,20 @@ export namespace Prisma {
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
   export type NestedDecimalFilter<$PrismaModel = never> = {
     equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
     in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
@@ -5325,6 +5376,23 @@ export namespace Prisma {
     gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
     gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
     not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
+  }
+
+  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type NestedDecimalWithAggregatesFilter<$PrismaModel = never> = {
@@ -5418,8 +5486,8 @@ export namespace Prisma {
   export type GymCreateWithoutCheckInsInput = {
     id?: string
     title: string
-    description: string
-    phone: string
+    description?: string | null
+    phone?: string | null
     latitude: Decimal | DecimalJsLike | number | string
     longitude: Decimal | DecimalJsLike | number | string
   }
@@ -5427,8 +5495,8 @@ export namespace Prisma {
   export type GymUncheckedCreateWithoutCheckInsInput = {
     id?: string
     title: string
-    description: string
-    phone: string
+    description?: string | null
+    phone?: string | null
     latitude: Decimal | DecimalJsLike | number | string
     longitude: Decimal | DecimalJsLike | number | string
   }
@@ -5479,8 +5547,8 @@ export namespace Prisma {
   export type GymUpdateWithoutCheckInsInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    phone?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
     latitude?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     longitude?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
   }
@@ -5488,8 +5556,8 @@ export namespace Prisma {
   export type GymUncheckedUpdateWithoutCheckInsInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    phone?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
     latitude?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     longitude?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
   }
