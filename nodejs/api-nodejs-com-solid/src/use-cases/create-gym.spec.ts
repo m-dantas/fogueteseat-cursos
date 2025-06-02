@@ -5,7 +5,7 @@ import { CreateGymUseCase } from './create-gym-case'
 let gymRepository: InMemoryGymsRepository
 let sut: CreateGymUseCase
 
-describe('GetUserProfile Use Case', () => {
+describe('Create Gym Use Case', () => {
   beforeEach(() => {
     gymRepository = new InMemoryGymsRepository()
     sut = new CreateGymUseCase(gymRepository) // System Under Test
