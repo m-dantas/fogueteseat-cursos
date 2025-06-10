@@ -6,11 +6,12 @@ import { z } from 'zod'
 export async function register(request: FastifyRequest, reply: FastifyReply) {
   const registerBodySchema = z.object({
     name: z.string(),
+    role: z.enum(['ADMIN', 'MEMBER']).default('MEMBER'),
     email: z.string().email(),
     password: z.string().min(6),
   })
 
-  const { name, email, password } = registerBodySchema.parse(request.body)
+  const { name, email, password, role } = registerBodySchema.parse(request.body)
 
   try {
     const userUseCase = makeRegisterUseCase()
@@ -18,6 +19,7 @@ export async function register(request: FastifyRequest, reply: FastifyReply) {
       name,
       email,
       password,
+      role,
     })
   } catch (error) {
     if (error instanceof UserAlreadyExistsError) {

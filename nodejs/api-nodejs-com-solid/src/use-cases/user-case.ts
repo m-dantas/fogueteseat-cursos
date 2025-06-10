@@ -7,6 +7,7 @@ interface IUserUseCaseRequest {
   name: string
   email: string
   password: string
+  role: 'ADMIN' | 'MEMBER'
 }
 
 interface IUserUseCaseResponse {
@@ -20,6 +21,7 @@ export class UserUseCase {
     name,
     email,
     password,
+    role,
   }: IUserUseCaseRequest): Promise<IUserUseCaseResponse> {
     const password_hash = await hash(password, 6)
 
@@ -32,6 +34,7 @@ export class UserUseCase {
     const user = await this.usersRepository.create({
       name,
       email,
+      role,
       password_hash,
     })
 
