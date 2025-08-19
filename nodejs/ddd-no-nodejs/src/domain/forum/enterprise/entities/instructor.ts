@@ -6,7 +6,6 @@ interface InstructorProps {
 }
 
 export class Instructor extends Entity<InstructorProps> {
-
   get name() {
     return this.props.name
   }

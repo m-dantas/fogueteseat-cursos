@@ -1,4 +1,4 @@
-import { UniqueEntityID } from "./unique-entity-id.js"
+import { UniqueEntityID } from './unique-entity-id.js'
 
 export class Entity<Props> {
   private _id: UniqueEntityID
@@ -8,7 +8,7 @@ export class Entity<Props> {
     this.props = props
     this._id = id ?? new UniqueEntityID()
   }
-  
+
   get id() {
     return this._id
   }

@@ -15,7 +15,6 @@ interface QuestionProps {
 }
 
 export class Question extends Entity<QuestionProps> {
-
   get authorId() {
     return this.props.authorId
   }
@@ -39,7 +38,7 @@ export class Question extends Entity<QuestionProps> {
   get createdAt() {
     return this.props.createdAt
   }
-  
+
   get updatedAt() {
     return this.props.updatedAt
   }
@@ -72,12 +71,18 @@ export class Question extends Entity<QuestionProps> {
     this.touch()
   }
 
-  static create(props: Optional<QuestionProps, 'createdAt' | 'slug'>, id?: UniqueEntityID) {
-    const question = new Question({
-      ...props,
-      slug: props.slug ?? Slug.createFromText(props.title),
-      createdAt: new Date()
-    }, id)
+  static create(
+    props: Optional<QuestionProps, 'createdAt' | 'slug'>,
+    id?: UniqueEntityID,
+  ) {
+    const question = new Question(
+      {
+        ...props,
+        slug: props.slug ?? Slug.createFromText(props.title),
+        createdAt: new Date(),
+      },
+      id,
+    )
 
     return question
   }
