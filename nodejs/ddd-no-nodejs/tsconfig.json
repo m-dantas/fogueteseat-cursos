@@ -7,9 +7,10 @@
 
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
-    "module": "es2020",
-    "allowImportingTsExtensions": false,
-    "target": "es2020",
+    "target": "esnext",
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "esModuleInterop": true,
     "types": ["node", "vitest/globals"],
     "baseUrl": "./",
     "paths": {
