@@ -1,3 +1,4 @@
+import type { PaginationParams } from '@/core/repositories/pagination-params.js'
 import { Question } from '../../enterprise/entities/question.js'
 
 export interface QuestionRepository {
@@ -6,4 +7,5 @@ export interface QuestionRepository {
   save(question: Question): Promise<void>
   findBySlug(slug: string): Promise<Question | null>
   findById(questionId: string): Promise<Question | null>
+  findManyRecent(params: PaginationParams): Promise<Question[]>
 }
